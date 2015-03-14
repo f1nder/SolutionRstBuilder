@@ -109,7 +109,7 @@ class Method implements ElementInterface
    %s
 
 %s
-   :rtype: %s
+   :return: %s
 EOT;
 
         return sprintf(
