@@ -45,7 +45,7 @@ class MethodSpec extends ObjectBehavior
 
    :param parameter1: Some description parameter1
    :param parameter2: Some description parameter2
-   :rtype: Return string
+   :return: Return string
 EOT
         );
     }
