@@ -1,0 +1,23 @@
+{
+  "name": "solution/rst-builder",
+  "description": "Builder for Rst Documentation",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "a.moroz",
+      "email": "a.moroz@mserverone.com"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpspec/phpspec": "~2.1"
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "autoload": {
+    "psr-4": {
+      "Solution\\RstBuilder\\": "src/"
+    }
+  }
+}

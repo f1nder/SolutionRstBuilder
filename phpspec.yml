@@ -1,0 +1,2 @@
+suites:
+    SolutionRstBuilder: { namespace: Solution\RstBuilder, psr4_prefix: Solution\RstBuilder, spec_path: \ }
