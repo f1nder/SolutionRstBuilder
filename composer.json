@@ -1,6 +1,6 @@
 {
   "name": "solution/rst-builder",
-  "description": "Builder for Rst Documentation",
+  "description": "Builder for Rst structure",
   "license": "MIT",
   "authors": [
     {
