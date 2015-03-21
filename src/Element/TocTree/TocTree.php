@@ -21,7 +21,7 @@ class TocTree implements ElementInterface
     protected $entries = [];
 
     /**
-     * @param Option $option
+     * @param  Option $option
      * @return $this
      */
     public function addOption(Option $option)
@@ -75,7 +75,6 @@ EOT;
             $this->glueElements($this->getEntries(), PHP_EOL, str_repeat(' ', 3))
         );
     }
-
 
     /**
      * @param $elements
