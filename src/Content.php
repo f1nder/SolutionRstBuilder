@@ -3,6 +3,7 @@
 namespace Solution\RstBuilder;
 
 use Solution\RstBuilder\Element\ElementInterface;
+use Solution\RstBuilder\Element\LineBreak;
 
 class Content
 {
@@ -13,9 +14,12 @@ class Content
      */
     protected $elements = [];
 
-    public function addElement(ElementInterface $element)
+    public function addElement(ElementInterface $element, $lineBreaks = 0)
     {
         $this->elements[] = $element;
+        if ($lineBreaks) {
+            $this->elements[] = new LineBreak($lineBreaks);
+        }
 
         return $this;
     }
