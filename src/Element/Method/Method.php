@@ -2,10 +2,13 @@
 
 namespace Solution\RstBuilder\Element\Method;
 
+use Solution\RstBuilder\Element\CommonHelper;
 use Solution\RstBuilder\Element\ElementInterface;
 
 class Method implements ElementInterface
 {
+    use CommonHelper;
+
     protected $name;
 
     protected $desc;
@@ -115,34 +118,23 @@ EOT;
         return sprintf(
             $template,
             $this->getName(),
-            $this->renderParameters(),
+            $this->glueElements(
+                $this->getParameters(),
+                function (ParameterInterface $element) {
+                    return $element->renderArg();
+                },
+                ', '
+            ),
             $this->getDesc(),
-            $this->renderDescParameters(),
+            $this->glueElements(
+                $this->getParameters(),
+                function (ParameterInterface $element) {
+                    return $element->render();
+                },
+                PHP_EOL,
+                str_repeat(' ', 3)
+            ),
             $this->getReturn()
         );
-    }
-
-    private function renderParameters()
-    {
-        $params = array_map(
-            function (ParameterInterface $parameter) {
-                return $parameter->getName();
-            },
-            $this->parameters
-        );
-
-        return implode(', ', $params);
-    }
-
-    private function renderDescParameters()
-    {
-        $params = array_map(
-            function (ParameterInterface $parameter) {
-                return sprintf('   :param %s: %s', $parameter->getName(), $parameter->getDesc());
-            },
-            $this->parameters
-        );
-
-        return implode(PHP_EOL, $params);
     }
 }

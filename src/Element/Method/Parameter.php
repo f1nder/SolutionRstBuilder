@@ -2,8 +2,15 @@
 
 namespace Solution\RstBuilder\Element\Method;
 
-class Parameter implements ParameterInterface
+use Solution\RstBuilder\Element\ElementInterface;
+
+class Parameter implements ParameterInterface, ElementInterface
 {
+    const TYPE_INTEGER = 'integer';
+    const TYPE_STRING = 'string';
+    const TYPE_BOOLEAN = 'boolean';
+    const TYPE_FLOAT = 'float';
+
     protected $name;
 
     protected $type;
@@ -11,6 +18,8 @@ class Parameter implements ParameterInterface
     protected $desc;
 
     protected $required;
+
+    protected $default;
 
     /**
      * Get Name
@@ -106,5 +115,69 @@ class Parameter implements ParameterInterface
         $this->required = $required;
 
         return $this;
+    }
+
+    /**
+     * Get Default
+     *
+     * @return mixed
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * Set Default
+     *
+     * @param mixed $default
+     *
+     * @return Parameter
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
+
+        return $this;
+    }
+
+    /**
+     * Render element to a string
+     *
+     * @return string
+     */
+    public function render()
+    {
+        return sprintf(
+            ':param %s %s: %s',
+            $this->renderType(),
+            $this->getName(),
+            $this->getDesc()
+        );
+    }
+
+    public function renderArg()
+    {
+        if ($this->isRequired()) {
+            return $this->getName();
+        } else {
+            return sprintf('[%s=%s]', $this->getName(), $this->getDefault());
+        }
+    }
+
+    protected function renderType()
+    {
+        switch ($this->getType()) {
+            case self::TYPE_INTEGER:
+                return 'int';
+            case self::TYPE_STRING:
+                return 'str';
+            case self::TYPE_BOOLEAN:
+                return 'boolean';
+            case self::TYPE_FLOAT:
+                return 'float';
+            default:
+                return null;
+        }
     }
 }

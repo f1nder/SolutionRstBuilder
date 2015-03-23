@@ -23,13 +23,11 @@ class MethodSpec extends ObjectBehavior
 
     public function it_should_render(ParameterInterface $p1, ParameterInterface $p2)
     {
-        $p1->getName()->willReturn('parameter1');
-        $p1->getDesc()->willReturn('Some description parameter1');
-        $p1->getType()->willReturn('string');
+        $p1->render()->willReturn('renderParam1');
+        $p1->renderArg()->willReturn('renderArg1');
 
-        $p2->getName()->willReturn('parameter2');
-        $p2->getDesc()->willReturn('Some description parameter2');
-        $p2->getType()->willReturn('string');
+        $p2->render()->willReturn('renderParam2');
+        $p2->renderArg()->willReturn('renderArg2');
 
         $this->setName('method.name');
         $this->setDesc('Description of the method');
@@ -39,12 +37,12 @@ class MethodSpec extends ObjectBehavior
 
         $this->render()->shouldReturn(
             <<<EOT
-.. method:: method.name(parameter1, parameter2)
+.. method:: method.name(renderArg1, renderArg2)
 
    Description of the method
 
-   :param parameter1: Some description parameter1
-   :param parameter2: Some description parameter2
+   renderParam1
+   renderParam2
    :return: Return string
 EOT
         );

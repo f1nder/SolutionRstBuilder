@@ -4,9 +4,7 @@ namespace Solution\RstBuilder\Element\Method;
 
 interface ParameterInterface
 {
-    public function getName();
+    public function render();
 
-    public function getType();
-
-    public function getDesc();
+    public function renderArg();
 }

@@ -5,7 +5,7 @@ namespace spec\Solution\RstBuilder\Element\TocTree;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Solution\RstBuilder\Element\TocTree\Entry;
-use Solution\RstBuilder\Element\TocTree\Option;
+use Solution\RstBuilder\Element\Option;
 
 class TocTreeSpec extends ObjectBehavior
 {

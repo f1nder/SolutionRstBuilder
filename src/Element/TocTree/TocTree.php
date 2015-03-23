@@ -2,7 +2,9 @@
 
 namespace Solution\RstBuilder\Element\TocTree;
 
+use Solution\RstBuilder\Element\CommonHelper;
 use Solution\RstBuilder\Element\ElementInterface;
+use Solution\RstBuilder\Element\Option;
 
 /**
  * Class TocTree
@@ -10,6 +12,8 @@ use Solution\RstBuilder\Element\ElementInterface;
  */
 class TocTree implements ElementInterface
 {
+    use CommonHelper;
+
     /**
      * @var array
      */
@@ -71,28 +75,23 @@ EOT;
 
         return sprintf(
             $template,
-            $this->glueElements($this->getOptions(), PHP_EOL, str_repeat(' ', 3)),
-            $this->glueElements($this->getEntries(), PHP_EOL, str_repeat(' ', 3))
+            $this->glueElements(
+                $this->getOptions(),
+                function (ElementInterface $element) {
+                    return $element->render();
+                },
+                PHP_EOL,
+                str_repeat(' ', 3)
+            ),
+            $this->glueElements(
+                $this->getEntries(),
+                function (ElementInterface $element) {
+                    return $element->render();
+                },
+                PHP_EOL,
+                str_repeat(' ', 3)
+            )
         );
     }
 
-    /**
-     * @param $elements
-     * @param $glue
-     * @param null $prefix
-     * @param null $suffix
-     *
-     * @return string
-     */
-    private function glueElements($elements, $glue, $prefix = null, $suffix = null)
-    {
-        $renderedElements = array_map(
-            function (ElementInterface $element) use ($prefix, $suffix) {
-                return $prefix . $element->render() . $suffix;
-            },
-            $elements
-        );
-
-        return implode($glue, $renderedElements);
-    }
 }

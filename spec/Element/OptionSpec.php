@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Solution\RstBuilder\Element\TocTree;
+namespace spec\Solution\RstBuilder\Element;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -9,7 +9,7 @@ class OptionSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Solution\RstBuilder\Element\TocTree\Option');
+        $this->shouldHaveType('Solution\RstBuilder\Element\Option');
         $this->shouldHaveType('Solution\RstBuilder\Element\ElementInterface');
     }
 

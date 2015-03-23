@@ -1,8 +1,6 @@
 <?php
 
-namespace Solution\RstBuilder\Element\TocTree;
-
-use Solution\RstBuilder\Element\ElementInterface;
+namespace Solution\RstBuilder\Element;
 
 /**
  * Class Option
