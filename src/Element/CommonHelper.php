@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Solution\RstBuilder\Element;
-
 
 trait CommonHelper
 {
@@ -24,5 +22,20 @@ trait CommonHelper
         );
 
         return implode($glue, $renderedElements);
+    }
+
+    protected function  addSpacesForEveryLine($content, $n = 1)
+    {
+        $lines = explode(PHP_EOL, $content);
+
+        return $this->glueElements(
+            $lines,
+            function ($e) {
+                return $e;
+            },
+            '',
+            str_repeat(' ', $n),
+            PHP_EOL
+        );
     }
 }

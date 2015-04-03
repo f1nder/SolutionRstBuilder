@@ -5,6 +5,7 @@ namespace Solution\RstBuilder\Element\TocTree;
 use Solution\RstBuilder\Element\CommonHelper;
 use Solution\RstBuilder\Element\ElementInterface;
 use Solution\RstBuilder\Element\Option;
+use Solution\RstBuilder\Element\Support\OptionSupport;
 
 /**
  * Class TocTree
@@ -12,28 +13,12 @@ use Solution\RstBuilder\Element\Option;
  */
 class TocTree implements ElementInterface
 {
-    use CommonHelper;
-
-    /**
-     * @var array
-     */
-    protected $options = [];
+    use CommonHelper, OptionSupport;
 
     /**
      * @var array
      */
     protected $entries = [];
-
-    /**
-     * @param  Option $option
-     * @return $this
-     */
-    public function addOption(Option $option)
-    {
-        $this->options[] = $option;
-
-        return $this;
-    }
 
     /**
      * @param Entry $entry
@@ -43,13 +28,6 @@ class TocTree implements ElementInterface
         $this->entries[] = $entry;
     }
 
-    /**
-     * @return array
-     */
-    public function getOptions()
-    {
-        return $this->options;
-    }
 
     /**
      * @return array
